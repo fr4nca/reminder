@@ -9,3 +9,7 @@ export const View = styled.View`
   align-items: center;
   justify-content: center;
 `;
+
+export const Button = styled.Button`
+  margin-top: 10px;
+`;

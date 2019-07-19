@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Text, View } from './styles';
+import { Text, View, Button } from './styles';
 
-const Main = () => (
+const Main = props => (
   <View>
     <Text>Reminder</Text>
   </View>
