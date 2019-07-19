@@ -7,7 +7,6 @@ export const Text = styled.Text`
 export const View = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: center;
 `;
 
 export const Button = styled.Button`

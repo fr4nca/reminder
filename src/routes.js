@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { View, TouchableOpacity, Image } from 'react-native';
+import React from 'react';
 import Icon from 'react-native-vector-icons/Feather';
+
+import { View, TouchableOpacity } from 'react-native';
 
 import {
   createAppContainer,
@@ -10,21 +11,19 @@ import {
 
 import Main from '~/pages/Main';
 
-class NavigationDrawerStructure extends Component {
-  toggleDrawer = () => {
-    this.props.navigationProps.toggleDrawer();
-  };
-
-  render() {
-    return (
-      <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
-          <Icon name='menu' size={30} style={{ marginLeft: 10 }} />
-        </TouchableOpacity>
-      </View>
-    );
-  }
-}
+const DrawerStructure = props => {
+  return (
+    <View style={{ flexDirection: 'row' }}>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigationProps.toggleDrawer();
+        }}
+      >
+        <Icon name='menu' size={30} style={{ marginLeft: 10 }} />
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const stackNavigator = createStackNavigator(
   {
@@ -32,21 +31,26 @@ const stackNavigator = createStackNavigator(
       screen: Main,
       navigationOptions: ({ navigation }) => ({
         title: 'Reminder',
-        headerLeft: <NavigationDrawerStructure navigationProps={navigation} />
+        headerLeft: <DrawerStructure navigationProps={navigation} />
       })
     }
   },
   { headerLayoutPreset: 'center' }
 );
 
-const drawerNavigator = createDrawerNavigator({
-  Main: {
-    screen: stackNavigator,
-    navigationOptions: {
-      drawerLabel: 'Home'
+const drawerNavigator = createDrawerNavigator(
+  {
+    Main: {
+      screen: stackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Home'
+      }
     }
+  },
+  {
+    drawerType: 'slide'
   }
-});
+);
 
 const Routes = createAppContainer(drawerNavigator);
 
