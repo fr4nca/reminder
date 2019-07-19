@@ -1,11 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, Card, Titulo, CardHeader, CardBody } from './styles';
 
-const ReminderCard = () => {
+const ReminderCard = props => {
   return (
-    <View>
-      <Text>Oi</Text>
-    </View>
+    <Card>
+      <CardHeader>
+        <Titulo>{props.item.titulo}</Titulo>
+      </CardHeader>
+      <CardBody>
+        <Text>{props.item.corpo}</Text>
+      </CardBody>
+    </Card>
   );
 };
 

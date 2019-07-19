@@ -10,6 +10,9 @@ import {
 } from 'react-navigation';
 
 import Main from '~/pages/Main';
+import Lembretes from '~/pages/Lembretes';
+import Notas from '~/pages/Notas';
+import Tarefas from '~/pages/Tarefas';
 
 const DrawerStructure = props => {
   return (
@@ -25,7 +28,7 @@ const DrawerStructure = props => {
   );
 };
 
-const stackNavigator = createStackNavigator(
+const mainStackNavigator = createStackNavigator(
   {
     Main: {
       screen: Main,
@@ -38,12 +41,69 @@ const stackNavigator = createStackNavigator(
   { headerLayoutPreset: 'center' }
 );
 
+const lembretesStackNavigator = createStackNavigator(
+  {
+    Lembretes: {
+      screen: Lembretes,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Lembretes',
+        headerLeft: <DrawerStructure navigationProps={navigation} />
+      })
+    }
+  },
+  { headerLayoutPreset: 'center' }
+);
+
+const notasStackNavigator = createStackNavigator(
+  {
+    Notas: {
+      screen: Notas,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Notas',
+        headerLeft: <DrawerStructure navigationProps={navigation} />
+      })
+    }
+  },
+  { headerLayoutPreset: 'center' }
+);
+
+const tarefasStackNavigator = createStackNavigator(
+  {
+    Tarefas: {
+      screen: Tarefas,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Tarefas',
+        headerLeft: <DrawerStructure navigationProps={navigation} />
+      })
+    }
+  },
+  { headerLayoutPreset: 'center' }
+);
+
 const drawerNavigator = createDrawerNavigator(
   {
     Main: {
-      screen: stackNavigator,
+      screen: mainStackNavigator,
       navigationOptions: {
         drawerLabel: 'Home'
+      }
+    },
+    Lembretes: {
+      screen: lembretesStackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Lembretes'
+      }
+    },
+    Notas: {
+      screen: notasStackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Notas'
+      }
+    },
+    Tarefas: {
+      screen: tarefasStackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Tarefas'
       }
     }
   },
