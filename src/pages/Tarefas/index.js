@@ -5,8 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ReminderCard from '~/components/ReminderCard';
 
-import data from '~/data/data.json';
-
 const Tarefas = () => (
   <>
     <FlatList
