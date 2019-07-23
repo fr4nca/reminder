@@ -1,32 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import { FlatList } from 'react-native';
-import { FloatingButton } from './styles';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ReminderCard from '~/components/ReminderCard';
 
-import data from '~/data/data.json';
+import ModalForm from '../ModalForm/ModalForm';
 
-const Main = () => (
-  <>
-    <FlatList
-      data={data.lembretes}
-      keyExtractor={item => item.id}
-      renderItem={({ item }) => <ReminderCard item={item} />}
-      numColumns={2}
-    />
-    <FloatingButton activeOpacity={0.7}>
-      <Icon name='plus' size={20} color={'#fff'} />
-    </FloatingButton>
-  </>
+const Main = () => {
+  const [notas, setNotas] = useState({});
+  const [lembretes, setLembretes] = useState([]);
 
-  // <ScrollView>
-  //   <View>
-  //     {items.map(texto => {
-  //       return <ReminderCard texto={texto} />;
-  //     })}
-  //   </View>
-  // </ScrollView>
-);
+  useEffect(() => {
+    (async () => {
+      const data = await AsyncStorage.getItem('lembrete');
+
+      setLembretes(JSON.parse(data));
+      console.log(JSON.parse(data));
+    })();
+  }, [lembretes]);
+
+  return (
+    <>
+      <FlatList
+        data={lembretes}
+        keyExtractor={item => item.title}
+        renderItem={({ item }) => <ReminderCard item={item} />}
+        numColumns={2}
+      />
+      <ModalForm />
+    </>
+  );
+};
 
 export default Main;

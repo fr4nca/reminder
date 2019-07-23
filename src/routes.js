@@ -99,13 +99,13 @@ const drawerNavigator = createDrawerNavigator(
       navigationOptions: {
         drawerLabel: 'Notas'
       }
-    },
-    Tarefas: {
-      screen: tarefasStackNavigator,
-      navigationOptions: {
-        drawerLabel: 'Tarefas'
-      }
     }
+    // Tarefas: {
+    //   screen: tarefasStackNavigator,
+    //   navigationOptions: {
+    //     drawerLabel: 'Tarefas'
+    //   }
+    // }
   },
   {
     drawerType: 'slide'

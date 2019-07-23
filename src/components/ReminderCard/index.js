@@ -5,10 +5,10 @@ const ReminderCard = props => {
   return (
     <Card>
       <CardHeader>
-        <Titulo>{props.item.titulo}</Titulo>
+        <Titulo>{props.item.title}</Titulo>
       </CardHeader>
       <CardBody>
-        <Text>{props.item.corpo}</Text>
+        <Text>{props.item.body}</Text>
       </CardBody>
     </Card>
   );
